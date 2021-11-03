@@ -1,0 +1,30 @@
+#include <opencv2/imgcodecs.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
+#include <iostream>
+
+using namespace cv;
+
+int main(){
+
+    VideoCapture cap(0);
+    Mat img;
+    Mat imgGray;
+    Mat imgBlur;
+    Mat imgCanny;
+
+    while(1){
+        cap.read(img);
+        cvtColor(img, imgGray, COLOR_BGR2GRAY);
+        GaussianBlur(img, imgBlur, Size(5, 5), 15, 15);
+        Canny(img, imgCanny, 30, 50);
+        imshow("Image", imgBlur);
+        imshow("Image", imgCanny);
+        imshow("Image", img);
+        imshow("Image", imgGray);
+        waitKey(1);
+    }
+
+    return 0;
+
+}
