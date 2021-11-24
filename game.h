@@ -9,5 +9,6 @@
 #include <SFML/Graphics.hpp>
 #include "ball_handler.h"
 
+void placeBall(sf::RenderWindow* window, MyPoint* position);
 void gameWindow(sf::RenderWindow* window, MyPoint* position);
 #endif //TEST_GAME_H
