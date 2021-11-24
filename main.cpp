@@ -5,23 +5,24 @@ int main(){
 
     VideoCapture cap(0);
     Mat img, mask;
-    MyPoint *middlePoint = new MyPoint();
+    MyPoint middlePoint;
 
     sf::RenderWindow window(sf::VideoMode(1024, 768), "SFML Test", sf::Style::Close | sf::Style::Titlebar);
+    window.setFramerateLimit(60);
 
     while(window.isOpen()){
         cap.read(img);
         mask = setColor(img, mask);
 
         Mat resultImageDil = convertImage(mask);
-        getContours(middlePoint, resultImageDil);
-        showMiddlePixel(middlePoint, resultImageDil.size().height, resultImageDil.size().width);
+        getContours(&middlePoint, resultImageDil);
+        showMiddlePixel(&middlePoint, resultImageDil.size().height, resultImageDil.size().width);
         imshow("Dilated", resultImageDil);
         imshow("Image", img);
 
         waitKey(1);
 
-        gameWindow(&window, middlePoint);
+        gameWindow(&window, &middlePoint);
     }
 
     return 0;

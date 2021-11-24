@@ -15,20 +15,26 @@ void placeBall(sf::RenderWindow* window, MyPoint* position){
 }
 
 void gameWindow(sf::RenderWindow* window, MyPoint* position){
-    sf::Event evt;
-    window->setFramerateLimit(60);
-    while(window->pollEvent(evt)){
-        if(evt.type == sf::Event::Closed)
-            window->close();
-        if(evt.type == sf::Event::KeyPressed){
-            if(evt.key.code == sf::Keyboard::Escape)
-                window->close();
-        }
-        window->setActive(true);
-        window->clear();
+//    sf::Event evt;
 
-        placeBall(window, position);
+    window->setActive(true);
+    window->clear();
+    placeBall(window, position);
+    window->display();
 
-        window->display();
-    }
+//    while(window->pollEvent(evt)){
+//        if(evt.type == sf::Event::Closed)
+//            window->close();
+//        if(evt.type == sf::Event::KeyPressed){
+//            if(evt.key.code == sf::Keyboard::Escape)
+//                window->close();
+//        }
+//
+//        window->setActive(true);
+//        window->clear();
+//
+//        placeBall(window, position);
+//
+//        window->display();
+//    }
 }
