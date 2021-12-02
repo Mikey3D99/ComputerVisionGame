@@ -1,42 +1,33 @@
 #include <iostream>
-
+#include "MyPoint.h"
 using namespace std;
 
+MyPoint::MyPoint(int x, int y) {
+    this->x = x;
+    this->y = y;
+}
 
-class MyPoint{
-    private:
-        int x;
-        int y;
+void MyPoint::set(int xx, int yy) {
+    this->x = xx;
+    this->y = yy;
+}
 
-    public:
-        explicit MyPoint(int x = 100, int y = 100){
-            this->x = x;
-            this->y = y;
-        }
+int MyPoint::getX() const {
+    return x;
+}
 
-        void set(int xx, int yy){
-            this->x = xx;
-            this->y = yy;
-        }
+int MyPoint::getY() const {
+    return y;
+}
 
-    int getX() const {
-        return x;
+void MyPoint::print() const{
+        cout << "(" << this->x << ", " << this->y << ")" << endl;
     }
 
-    int getY() const {
-        return y;
-    }
+void MyPoint::setX(int x) {
+    this->x = x;
+}
 
-    void print() const{
-            cout << "(" << this->x << ", " << this->y << ")" << endl;
-        }
-
-    void setX(int x) {
-        MyPoint::x = x;
-    }
-
-    void setY(int y) {
-        MyPoint::y = y;
-    }
-
-};
+void MyPoint::setY(int y) {
+    this->y = y;
+}

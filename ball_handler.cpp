@@ -27,6 +27,7 @@ Mat setColor(Mat img, Mat mask){
     Mat imgHSV;
     cvtColor(img, imgHSV, COLOR_BGR2HSV);
     struct colorsHSV ballColor;
+//    trackbarWindow(ballColor);
     Scalar lower(ballColor.hmin, ballColor.smin, ballColor.vmin);
     Scalar upper(ballColor.hmax, ballColor.smax, ballColor.vmax);
     inRange(imgHSV, lower, upper, mask);
@@ -42,9 +43,8 @@ Mat convertImage(Mat image){
     return resultImage;
 }
 
-void showMiddlePixel(MyPoint *p, int height, int width){
+void showMiddlePixel(Player *p, int height, int width){
     Mat pixelImage(height, width, CV_8UC3, Scalar(255, 255, 255));
-
 
     if(p->getY() < height && p->getX() < width){
         for (int i = p->getY() - 25; i < p->getY() + 25; i++) {
@@ -59,7 +59,7 @@ void showMiddlePixel(MyPoint *p, int height, int width){
     }
 }
 
-void getContours(MyPoint* middlePoint, Mat imgDil){
+void getContours(Player* player, Mat imgDil){
 
     vector<vector<Point>> contours;
     vector<Vec4i> hierarchy;
@@ -76,23 +76,30 @@ void getContours(MyPoint* middlePoint, Mat imgDil){
         if (area > 1000){
             float peri = arcLength(contours[i], true);
             approxPolyDP(contours[i], conPoly[i], 0.02 * peri, true);
-            cout << conPoly[i].size() << endl;
+            //TODO
+//            cout << conPoly[i].size() << endl;
             boundRect[i] = boundingRect(conPoly[i]);
 
             int objCor = (int)conPoly[i].size();
 
             if (objCor > 4){
-                cout << "Mamy kolko" << endl;
-                middlePoint->set((boundRect[i].tl().x + boundRect[i].br().x) / 2, (boundRect[i].tl().y + boundRect[i].br().y) / 2);
+                //TODO
+//                cout << "Mamy kolko" << endl;
+//                middlePoint->set((boundRect[i].tl().x + boundRect[i].br().x) / 2, (boundRect[i].tl().y + boundRect[i].br().y) / 2);
+
+                int divider = player->getMoveSpeedDivider();
+
+                player->setPosition(
+                        sf::Vector2<int>(
+                                (boundRect[i].tl().x + boundRect[i].br().x / divider),
+                                (boundRect[i].tl().y + boundRect[i].br().y / divider)
+                        )
+                );
 
                 //draw rectangle and contours over color
                 //rectangle(img, boundRect[i].tl(), boundRect[i].br(), Scalar(255, 0, 255), 5);
                 //drawContours(img, conPoly, i, Scalar(255, 0, 255), 2);
-
-
             }
-
-
         }
     }
 }

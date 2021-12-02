@@ -1,34 +1,40 @@
 #include "ball_handler.h"
-#include "game.h"
+#include "src/Game.h"
+#include "opencv2/core.hpp"
 
 int main(){
-
     VideoCapture cap(0);
-    Mat img, mask;
-    MyPoint middlePoint;
+    Mat img, flipped_img, mask;
 
-    sf::RenderWindow window(sf::VideoMode(1024, 768), "SFML Test", sf::Style::Close | sf::Style::Titlebar);
-    window.setFramerateLimit(60);
+    Game game;
+    Player *player = game.getPlayer();
 
-    while(window.isOpen()){
+    // Main program loop
+    while (game.getWindow()->isOpen()) {
         cap.read(img);
-        mask = setColor(img, mask);
+
+        // flip image by Y axis
+        cv::flip(img, flipped_img, 1);
+
+        mask = setColor(flipped_img, mask);
 
         Mat resultImageDil = convertImage(mask);
-        getContours(&middlePoint, resultImageDil);
-        showMiddlePixel(&middlePoint, resultImageDil.size().height, resultImageDil.size().width);
+        getContours(player, resultImageDil);
+
+//        to nizej wywala błąd, dzieją się rzeczy niestworzone
+//        showMiddlePixel(&middlePoint, resultImageDil.size().height, resultImageDil.size().width);
+
         imshow("Dilated", resultImageDil);
-        imshow("Image", img);
+        imshow("Image", flipped_img);
 
         waitKey(1);
 
-        gameWindow(&window, &middlePoint);
+        game.updateWindow();
     }
 
     return 0;
 
 }
-
 
 //int main() {
 //

@@ -9,8 +9,8 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 #include <iostream>
-#include <windows.h>
-#include "src/MyPoint.cpp"
+#include "src/Player.h"
+
 
 using namespace cv;
 using namespace std;
@@ -27,7 +27,7 @@ struct colorsHSV{
 void trackbarWindow(struct colorsHSV& colors);  //trackbar do ustawienia kolorow
 Mat setColor(Mat img, Mat mask);
 Mat convertImage(Mat image); //zamiana obrazu tak, żeby wykrywał piłkę
-void showMiddlePixel(MyPoint *p, int height, int width); // chyba raczej to do znalezienia srodka
-void getContours(MyPoint* middlePoint, Mat imgDil); //tutaj jest wszystko
+void showMiddlePixel(Player *p, int height, int width); // chyba raczej to do znalezienia srodka
+void getContours(Player* middlePoint, Mat imgDil); //tutaj jest wszystko
 
 #endif //TEST_BALL_HANDLER_H
