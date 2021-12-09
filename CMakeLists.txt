@@ -23,7 +23,7 @@ set(OpenCV_DIR /Users/marcinswiderek/opencv/build_opencv)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp ball_handler.cpp ball_handler.h src/MyPoint.cpp src/Game.cpp src/MyPoint.h src/Game.h src/Obstacle.cpp src/Obstacle.h src/constants.h src/Player.cpp src/Player.h)
+set(SOURCE_FILES main.cpp ball_handler.cpp ball_handler.h src/MyPoint.cpp src/Game.cpp src/MyPoint.h src/Game.h src/Obstacle.cpp src/Obstacle.h src/constants.h src/Player.cpp src/Player.h src/enemy.h src/enemy.cpp)
 add_executable(Test ${SOURCE_FILES})
 include_directories(/usr/local/include)
 

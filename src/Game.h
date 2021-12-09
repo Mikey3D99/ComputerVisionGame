@@ -10,12 +10,20 @@
 #include "MyPoint.h"
 #include "Obstacle.h"
 #include "Player.h"
+#include "enemy.h"
 
 class Game {
 private:
     sf::RenderWindow *window;
     Player *player;
-    std::vector<Obstacle*> obstacles;
+    std::vector<Enemy*> obstacles;
+    bool isDead;
+
+    sf::String fileDied;
+    sf::Texture diedTexture;
+    sf::Texture backgroundTexture;
+    sf::Sprite died;
+    sf::Sprite background;
 
     // Draw player
     void drawBall();
@@ -23,7 +31,10 @@ private:
     // Draw all of the obstacles
     void drawObstacles();
 
+    void reset();
+
     bool hasPlayerCollidedWithObstacle();
+
 public:
     // Constructor
     explicit Game();
@@ -32,7 +43,7 @@ public:
     void updateWindow();
 
     // Add new obstacle to the game
-    void addObstacle(sf::Vector2f position, sf::Vector2f size, sf::Color color);
+    void addObstacle(sf::Vector2f position, sf::Vector2f size,const sf::String& fileName, int speed);
 
     // Getters
     sf::RenderWindow* getWindow();

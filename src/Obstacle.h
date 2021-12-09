@@ -16,6 +16,7 @@ private:
     int frameCounterCap;
     int frameCounter;
     int speed;
+
     sf::RectangleShape *shape;
 
 public:
