@@ -1,31 +1,32 @@
-#include "ball_handler.h"
+#include "src/Visualisation.h"
 #include "src/Game.h"
 #include "opencv2/core.hpp"
+#include <opencv2/imgcodecs.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
+#include <iostream>
+#include "src/Player.h"
+#include "ball_handler.h"
+
+using namespace cv;
+using namespace std;
 
 int main(){
-    VideoCapture cap(0);
-    Mat img, flipped_img, mask;
 
+    VideoCapture cap(0);
+    Mat img, flipped_img;
+//    Mat img, flipped_img, mask;
+    ColorHsv color = ColorHsv();
+    Visualisation visualisation = Visualisation(cap, img, color);
     Game game;
     Player *player = game.getPlayer();
 
     // Main program loop
     while (game.getWindow()->isOpen()) {
-        cap.read(img);
 
-        // flip image by Y axis
-        cv::flip(img, flipped_img, 1);
-
-        mask = setColor(flipped_img, mask);
-
-        Mat resultImageDil = convertImage(mask);
-        getContours(player, resultImageDil);
-
-//        to nizej wywala błąd, dzieją się rzeczy niestworzone
-//        showMiddlePixel(&middlePoint, resultImageDil.size().height, resultImageDil.size().width);
-
-        imshow("Dilated", resultImageDil);
-        imshow("Image", flipped_img);
+        visualisation.handleFrame();
+        visualisation.getContours(player);
+        visualisation.showImages();
 
         waitKey(1);
 
@@ -63,3 +64,13 @@ int main(){
 //
 //    return 0;
 //}
+
+//        cap.read(img);
+//
+//        // flip image by Y axis
+//        cv::flip(img, flipped_img, 1);
+//
+//        mask = setColor(flipped_img, mask);
+//
+//        Mat resultImageDil = convertImage(mask);
+//        getContours(player, resultImageDil);
