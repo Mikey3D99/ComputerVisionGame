@@ -1,7 +1,3 @@
-//
-// Created by nowak on 12/9/2021.
-//
-
 #include "Visualisation.h"
 
 #include <utility>
@@ -27,25 +23,6 @@ void Visualisation::readAndFlip(){
     cv::flip(this->image, this->flipped_video, 1);
 }
 
-//void Visualisation::trackbarWindow(){
-//    //  pomidor
-////    int hmin = 129, smin = 111, vmin = 99;
-////    int hmax = 335, smax = 196, vmax = 194;
-//
-//
-//    //  niebieska pilka
-////    int hmin = 94, smin = 182, vmin = 111;
-////    int hmax = 129, smax = 255, vmax = 243;
-//
-//    namedWindow("Trackbars", (640, 400));
-//    createTrackbar("Hue Min", "Trackbars", color.hmin, 359);
-//    createTrackbar("Hue Max", "Trackbars", color.hmax, 359);
-//    createTrackbar("Sat Min", "Trackbars", color.smin, 255);
-//    createTrackbar("Sat Max", "Trackbars", color.smax, 255);
-//    createTrackbar("Val Min", "Trackbars", color.vmin, 255);
-//    createTrackbar("Val Max", "Trackbars", color.vmax, 255);
-//}
-
 void Visualisation::setColor(){
     Mat imgHsv;
     cvtColor(this->flipped_video, imgHsv, COLOR_BGR2HSV);
@@ -68,17 +45,14 @@ void Visualisation::getContours(Player* player){
     vector<vector<Point>> contours;
     vector<Vec4i> hierarchy;
 
-    //finding areas
     findContours(this->result, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
-    //creating vector of polys of founs areas
     vector<vector<Point>> conPoly(contours.size());
     vector<Rect> boundRect(contours.size());
 
     for (int i = 0; i < contours.size(); i++){
         int area = contourArea(contours[i]);
 
-        //if poly is large enough
         if (area > 1000){
             float peri = arcLength(contours[i], true);
             approxPolyDP(contours[i], conPoly[i], 0.02 * peri, true);
@@ -96,10 +70,6 @@ void Visualisation::getContours(Player* player){
                         (boundRect[i].tl().y + boundRect[i].br().y / divider)
                     )
                 );
-
-                //draw rectangle and contours over color
-                //rectangle(img, boundRect[i].tl(), boundRect[i].br(), Scalar(255, 0, 255), 5);
-                //drawContours(img, conPoly, i, Scalar(255, 0, 255), 2);
             }
         }
     }

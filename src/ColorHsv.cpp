@@ -1,7 +1,3 @@
-//
-// Created by nowak on 12/9/2021.
-//
-
 #include "ColorHsv.h"
 
 ColorHsv::ColorHsv() {

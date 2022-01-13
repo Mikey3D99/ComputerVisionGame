@@ -1,7 +1,3 @@
-//
-// Created by nowak on 12/9/2021.
-//
-
 #ifndef TEST_COLORHSV_H
 #define TEST_COLORHSV_H
 
@@ -34,4 +30,4 @@ public:
 };
 
 
-#endif //TEST_COLORHSV_H
+#endif

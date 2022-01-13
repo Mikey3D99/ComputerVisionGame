@@ -1,7 +1,3 @@
-//
-// Created by Marcin Świderek on 25/11/2021.
-//
-
 #include "Player.h"
 
 Player::Player(sf::Vector2<int> position, int radius) {

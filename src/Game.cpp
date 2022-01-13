@@ -1,15 +1,11 @@
-// Main Game class
-
 #include "Game.h"
 #include "constants.h"
-#include "enemy.h"
+#include "Enemy.h"
 #include "random"
 #include <ctime>
 
 Game::Game() {
 
-
-    // set textures
     this->backgroundTexture.loadFromFile("/home/vm/CLionProjects/Aplikacja/src/assets/nebula.jpg");
     this->background.setTexture(this->backgroundTexture);
 
@@ -19,7 +15,6 @@ Game::Game() {
     this->isDead = false;
 
 
-    // Init game window
     this->window = new sf::RenderWindow(
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),
             "SFML Test",
@@ -27,10 +22,10 @@ Game::Game() {
     );
     this->window->setFramerateLimit(FRAMERATE);
 
-    // Init player
+
     this->player = new Player(sf::Vector2<int>(WINDOW_WIDTH - 550, WINDOW_HEIGHT - 150), 20);
 
-    // Init obstacles
+
     srand (time(nullptr));
     int segment1 = rand() % (WINDOW_WIDTH);
     sf::String file = "/home/vm/CLionProjects/Aplikacja/src/assets/laser.png";
@@ -55,9 +50,6 @@ void Game::drawBall() {
     float ballScale = 0.33;
     ball.scale(ballScale, ballScale);
 
-    //sf::CircleShape ball1;
-    //ball.setRadius((float)this->player->getRadius());
-    //ball.setFillColor(sf::Color::Red);
     ball.setPosition((float)this->player->getX(), (float)this->player->getY());
     this->getWindow()->draw(ball);
 }
@@ -66,7 +58,6 @@ void Game::updateWindow() {
     sf::Event event{};
 
     while (window->pollEvent(event)) {
-        // "close requested" event: we close the window
         if (event.type == sf::Event::Closed)
             window->close();
         if(event.type == sf::Event::KeyPressed){

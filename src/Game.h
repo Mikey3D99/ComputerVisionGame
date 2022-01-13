@@ -10,7 +10,7 @@
 #include "MyPoint.h"
 #include "Obstacle.h"
 #include "Player.h"
-#include "enemy.h"
+#include "Enemy.h"
 
 class Game {
 private:
@@ -25,10 +25,8 @@ private:
     sf::Sprite died;
     sf::Sprite background;
 
-    // Draw player
     void drawBall();
 
-    // Draw all of the obstacles
     void drawObstacles();
 
     void reset();
@@ -36,18 +34,11 @@ private:
     bool hasPlayerCollidedWithObstacle();
 
 public:
-    // Constructor
     explicit Game();
-
-    // Update game window, it should run every frame
     void updateWindow();
-
-    // Add new obstacle to the game
     void addObstacle(sf::Vector2f position, sf::Vector2f size,const sf::String& fileName, int speed);
-
-    // Getters
     sf::RenderWindow* getWindow();
     Player* getPlayer();
 };
 
-#endif //TEST_GAME_H
+#endif

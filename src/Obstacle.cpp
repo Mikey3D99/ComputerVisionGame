@@ -1,7 +1,3 @@
-//
-// Created by Marcin Świderek on 25/11/2021.
-//
-
 #include "Obstacle.h"
 
 Obstacle::Obstacle(sf::Vector2f position, sf::Vector2f size, sf::Color color) {

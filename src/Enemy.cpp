@@ -1,8 +1,4 @@
-//
-// Created by Marcin Świderek on 25/11/2021.
-//
-
-#include "enemy.h"
+#include "Enemy.h"
 
 
 Enemy::Enemy(sf::Vector2f position, sf::Vector2f size, const sf::String& fileName, int speed) {
@@ -14,8 +10,6 @@ Enemy::Enemy(sf::Vector2f position, sf::Vector2f size, const sf::String& fileNam
     this->myEnemy.scale(0.33, 0.33);
     this->spriteHeight= this->myEnemy.getTextureRect().height / 3;
     this->spriteWidth= this->myEnemy.getTextureRect().width / 3;
-
-    // TODO
 
     this->frameCounterCap = 1;
     this->frameCounter = 0;
@@ -64,8 +58,6 @@ bool Enemy::isCollidingWithPlayer(Player *player) {
 
     auto playerX = (float)player->getX();
     auto playerY = (float)player->getY();
-
-    // simple collisions for 3 points
 
     if (
             ((playerX + 55 >= obstaclePosition.x && playerX + 55  <= obstaclePosition.x + this->spriteWidth) &&

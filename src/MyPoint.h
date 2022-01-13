@@ -1,7 +1,3 @@
-//
-// Created by Marcin Świderek on 24/11/2021.
-//
-
 #ifndef TEST_MYPOINT_H
 #define TEST_MYPOINT_H
 
@@ -22,4 +18,4 @@ public:
     void setY(int y);
 };
 
-#endif //TEST_MYPOINT_H
+#endif
