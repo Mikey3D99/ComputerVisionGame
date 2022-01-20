@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "constants.h"
+#include "Constants.h"
 #include "Player.h"
 
 class Obstacle {

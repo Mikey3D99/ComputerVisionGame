@@ -1,15 +1,15 @@
 #include "Game.h"
-#include "constants.h"
+#include "Constants.h"
 #include "Enemy.h"
 #include "random"
 #include <ctime>
 
 Game::Game() {
 
-    this->backgroundTexture.loadFromFile("/home/vm/CLionProjects/Aplikacja/src/assets/nebula.jpg");
+    this->backgroundTexture.loadFromFile("src/assets/nebula.jpg");
     this->background.setTexture(this->backgroundTexture);
 
-    this->fileDied = "/home/vm/CLionProjects/Aplikacja/src/assets/dead4.png";
+    this->fileDied = "src/assets/dead4.png";
     this->diedTexture.loadFromFile(fileDied);
     this->died.setTexture(this->diedTexture);
     this->isDead = false;
@@ -28,7 +28,7 @@ Game::Game() {
 
     srand (time(nullptr));
     int segment1 = rand() % (WINDOW_WIDTH);
-    sf::String file = "/home/vm/CLionProjects/Aplikacja/src/assets/laser.png";
+    sf::String file = "src/assets/laser.png";
 
     for(int i = 0; i < 4; i++){
         this->addObstacle(
@@ -42,7 +42,7 @@ Game::Game() {
 
 void Game::drawBall() {
 
-    sf::String fileSource = "/home/vm/CLionProjects/Aplikacja/src/assets/ufo1.png";
+    sf::String fileSource = "src/assets/ufo1.png";
     sf::Texture texture;
     texture.loadFromFile(fileSource);
     sf::Sprite ball(texture);

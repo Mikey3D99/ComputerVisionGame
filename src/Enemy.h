@@ -3,14 +3,13 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "constants.h"
+#include "Constants.h"
 #include "Player.h"
 #include "random"
 #include <ctime>
 
 class Enemy {
     private:
-        // every how many frames obstacle should go down
         int frameCounterCap;
         int frameCounter;
         int speed;
@@ -21,7 +20,7 @@ class Enemy {
         sf::Sprite myEnemy;
         int spriteWidth;
         int spriteHeight;
-        // constructor
+
         explicit Enemy(sf::Vector2f position, sf::Vector2f size, const sf::String& fileName, int speed);
 
         void changeSize(float scaleX, float scaleY);
